@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2020 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package cn.unikue.springstarter.geolocation;
+package com.jiovan.spring.starter.geolocation;
 
 
 import java.io.IOException;
@@ -30,10 +30,10 @@ import com.maxmind.geoip2.WebServiceClient;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 import com.maxmind.geoip2.model.CityResponse;
 import com.maxmind.geoip2.model.CountryResponse;
-import cn.unikue.commonplexus.javaseutil.util.InetAddressWraps;
-import cn.unikue.commonplexus.javaseutil.util.OptionalPlainWraps;
-import cn.unikue.commonplexus.javaseutil.util.StackTraceWraps;
-import cn.unikue.springstarter.geolocation.config.GeoLocationAutoConfiguration;
+import com.jiovan.plexus.common.toolkit.util.InetAddressWraps;
+import com.jiovan.plexus.common.toolkit.util.OptionalPlainWraps;
+import com.jiovan.plexus.common.toolkit.util.StackTraceWraps;
+import com.jiovan.spring.starter.geolocation.config.GeoLocationAutoConfiguration;
 import lombok.extern.slf4j.Slf4j;
 
 

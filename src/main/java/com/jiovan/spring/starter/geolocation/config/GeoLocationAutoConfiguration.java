@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2020 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package cn.unikue.springstarter.geolocation.config;
+package com.jiovan.spring.starter.geolocation.config;
 
 
 import java.io.IOException;
@@ -30,13 +30,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.util.CollectionUtils;
 import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.WebServiceClient;
-import cn.unikue.commonplexus.javaseutil.util.InetProxyWraps;
-import cn.unikue.commonplexus.javaseutil.util.NumberUtilsWraps;
-import cn.unikue.springstarter.geolocation.composer.GeoLocationResolver;
-import cn.unikue.springstarter.geolocation.composer.impl.DefaultGeoLocationResolver;
-import cn.unikue.springstarter.geolocation.enumeration.GeoDatabaseType;
-import cn.unikue.springstarter.geolocation.property.GeoLocationProperties;
-import cn.unikue.springstarter.geolocation.util.GeoDatabaseUtils;
+import com.jiovan.plexus.common.toolkit.util.InetProxyWraps;
+import com.jiovan.plexus.common.toolkit.util.NumberUtilsWraps;
+import com.jiovan.spring.starter.geolocation.composer.GeoLocationResolver;
+import com.jiovan.spring.starter.geolocation.composer.impl.DefaultGeoLocationResolver;
+import com.jiovan.spring.starter.geolocation.enumeration.GeoDatabaseType;
+import com.jiovan.spring.starter.geolocation.property.GeoLocationProperties;
+import com.jiovan.spring.starter.geolocation.util.GeoDatabaseUtils;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 
@@ -45,20 +45,29 @@ import jakarta.annotation.Nullable;
  * Configuration for GEO location
  *
  * @author David Hsing
- * @reference "https://dev.maxmind.com/geoip/geolite2-free-geolocation-data"
- * @reference "https://maxmind.github.io/GeoIP2-java/"
+ * @see "https://dev.maxmind.com/geoip/geolite2-free-geolocation-data"
+ * @see "https://maxmind.github.io/GeoIP2-java/"
  */
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(value = GeoLocationProperties.class)
 @ConditionalOnBooleanProperty(prefix = GeoLocationAutoConfiguration.PROPERTIES_PREFIX, name = "enabled", matchIfMissing = true)
-@SuppressWarnings({"JavadocDeclaration", "JavadocLinkAsPlainText"})
 public class GeoLocationAutoConfiguration {
-    public static final String PROPERTIES_PREFIX = "spring.geo-location";    // $NON-NLS-1$
+    public static final String PROPERTIES_PREFIX = "jiovan.geo-location";    // $NON-NLS-1$
     public static final String COUNTRY_DATABASE_READER = "geoCountryDatabaseReader";    // $NON-NLS-1$
     public static final String CITY_DATABASE_READER = "geoCityDatabaseReader";    // $NON-NLS-1$
     public static final String ASN_DATABASE_READER = "geoAsnDatabaseReader";    // $NON-NLS-1$
     public static final String WEB_SERVICE_CLIENT = "geoWebServiceClient";    // $NON-NLS-1$
     public static final String LOCATION_RESOLVER = "geoLocationResolver";    // $NON-NLS-1$
+
+    /**
+     * Returns a {@link com.maxmind.geoip2.DatabaseReader} for the local country database
+     *
+     * @param properties the geo location properties providing the country database location and cache settings
+     *
+     * @return the country {@link com.maxmind.geoip2.DatabaseReader}
+     *
+     * @throws java.io.IOException if the country database cannot be opened or read
+     */
 
     @Bean(name = COUNTRY_DATABASE_READER)
     @ConditionalOnMissingBean(name = COUNTRY_DATABASE_READER)
@@ -68,6 +77,16 @@ public class GeoLocationAutoConfiguration {
         return GeoDatabaseUtils.getDatabaseReader(properties, GeoDatabaseType.COUNTRY);
     }
 
+    /**
+     * Returns a {@link com.maxmind.geoip2.DatabaseReader} for the local city database
+     *
+     * @param properties the geo location properties providing the city database location and cache settings
+     *
+     * @return the city {@link com.maxmind.geoip2.DatabaseReader}
+     *
+     * @throws java.io.IOException if the city database cannot be opened or read
+     */
+
     @Bean(name = CITY_DATABASE_READER)
     @ConditionalOnMissingBean(name = CITY_DATABASE_READER)
     @ConditionalOnBooleanProperty(prefix = PROPERTIES_PREFIX + ".local-file", name = "enabled", matchIfMissing = true)
@@ -76,6 +95,16 @@ public class GeoLocationAutoConfiguration {
         return GeoDatabaseUtils.getDatabaseReader(properties, GeoDatabaseType.CITY);
     }
 
+    /**
+     * Returns a {@link com.maxmind.geoip2.DatabaseReader} for the local ASN database
+     *
+     * @param properties the geo location properties providing the ASN database location and cache settings
+     *
+     * @return the ASN {@link com.maxmind.geoip2.DatabaseReader}
+     *
+     * @throws java.io.IOException if the ASN database cannot be opened or read
+     */
+
     @Bean(name = ASN_DATABASE_READER)
     @ConditionalOnMissingBean(name = ASN_DATABASE_READER)
     @ConditionalOnBooleanProperty(prefix = PROPERTIES_PREFIX + ".local-file", name = "enabled", matchIfMissing = true)
@@ -83,6 +112,14 @@ public class GeoLocationAutoConfiguration {
     public DatabaseReader asnDatabaseReader(@Nonnull GeoLocationProperties properties) throws IOException {
         return GeoDatabaseUtils.getDatabaseReader(properties, GeoDatabaseType.ASN);
     }
+
+    /**
+     * Returns a {@link com.maxmind.geoip2.WebServiceClient} configured from the remote site settings
+     *
+     * @param properties the geo location properties providing the account ID, license key, host, timeouts and proxy settings
+     *
+     * @return the configured {@link com.maxmind.geoip2.WebServiceClient}
+     */
 
     @Bean(name = WEB_SERVICE_CLIENT)
     @ConditionalOnMissingBean(name = WEB_SERVICE_CLIENT)
@@ -114,6 +151,17 @@ public class GeoLocationAutoConfiguration {
         }
         return builder.build();
     }
+
+    /**
+     * Returns a {@link com.jiovan.spring.starter.geolocation.composer.GeoLocationResolver} composed of the given database readers and web service client
+     *
+     * @param properties the geo location properties whose {@code discard-lan} setting controls whether LAN addresses are discarded
+     * @param countryReader the country database reader, may be {@code null}
+     * @param cityReader the city database reader, may be {@code null}
+     * @param webClient the web service client, may be {@code null}
+     *
+     * @return the configured {@link com.jiovan.spring.starter.geolocation.composer.GeoLocationResolver}
+     */
 
     @Bean(name = LOCATION_RESOLVER)
     @ConditionalOnMissingBean(name = LOCATION_RESOLVER)

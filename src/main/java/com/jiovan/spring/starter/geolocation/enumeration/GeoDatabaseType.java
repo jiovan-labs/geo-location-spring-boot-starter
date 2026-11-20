@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2020 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,25 +14,32 @@
  * limitations under the License.
  */
 
-package cn.unikue.springstarter.geolocation.enumeration;
+package com.jiovan.spring.starter.geolocation.enumeration;
 
 
-import cn.unikue.commonplexus.javaseutil.enumeration.ValueEnum;
+import com.jiovan.plexus.common.toolkit.enumeration.ValueEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 
 /**
- * Enumerations of GEO cache types
+ * Enumerations of GEO database types
  *
  * @author David Hsing
+ * @see com.maxmind.geoip2.DatabaseReader.DatabaseType
  */
 @AllArgsConstructor
 @Getter
-@SuppressWarnings("unused")
-public enum GeoCacheType implements ValueEnum<String> {
-    NO("no"),    // $NON-NLS-1$
-    CHM("chm");    // $NON-NLS-1$
+@SuppressWarnings({"unused", "JavadocReference"})
+public enum GeoDatabaseType implements ValueEnum<String> {
+    ANONYMOUS_IP("anonymous-ip"),    // $NON-NLS-1$
+    ASN("asn"),    // $NON-NLS-1$
+    CITY("city"),    // $NON-NLS-1$
+    CONNECTION_TYPE("connection-type"),    // $NON-NLS-1$
+    COUNTRY("country"),    // $NON-NLS-1$
+    DOMAIN("domain"),    // $NON-NLS-1$
+    ENTERPRISE("enterprise"),    // $NON-NLS-1$
+    ISP("isp");    // $NON-NLS-1$
 
     private final String value;
 }

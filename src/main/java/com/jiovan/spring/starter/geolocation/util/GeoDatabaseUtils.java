@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2020 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package cn.unikue.springstarter.geolocation.util;
+package com.jiovan.spring.starter.geolocation.util;
 
 
 import java.io.FileNotFoundException;
@@ -25,10 +25,10 @@ import org.springframework.util.CollectionUtils;
 import com.maxmind.db.CHMCache;
 import com.maxmind.db.NoCache;
 import com.maxmind.geoip2.DatabaseReader;
-import cn.unikue.commonplexus.javaseutil.util.NumberUtilsWraps;
-import cn.unikue.commonplexus.springutil.util.ResourceUtilsWraps;
-import cn.unikue.springstarter.geolocation.enumeration.GeoDatabaseType;
-import cn.unikue.springstarter.geolocation.property.GeoLocationProperties;
+import com.jiovan.plexus.common.toolkit.util.NumberUtilsWraps;
+import com.jiovan.plexus.spring.toolkit.util.ResourceUtilsWraps;
+import com.jiovan.spring.starter.geolocation.enumeration.GeoDatabaseType;
+import com.jiovan.spring.starter.geolocation.property.GeoLocationProperties;
 
 
 /**
@@ -38,6 +38,17 @@ import cn.unikue.springstarter.geolocation.property.GeoLocationProperties;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class GeoDatabaseUtils {
+    /**
+     * Returns a {@link com.maxmind.geoip2.DatabaseReader} for the local database of the given type configured in the properties
+     *
+     * @param properties the geo location properties providing the local database paths, locales and cache settings
+     * @param type the database type whose location is read from the properties
+     *
+     * @return the configured {@link com.maxmind.geoip2.DatabaseReader}
+     *
+     * @throws java.io.IOException if the database resource cannot be opened or read
+     */
+
     @Nonnull
     public static DatabaseReader getDatabaseReader(@Nonnull GeoLocationProperties properties, @Nonnull GeoDatabaseType type) throws IOException {
         GeoLocationProperties.LocalFile localFile = properties.getLocalFile();

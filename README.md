@@ -8,18 +8,18 @@ Spring Boot application integrates `GeoLocation` quickly, to provide API for the
 
 ```xml
     <dependency>
-        <groupId>cn.unikue.springstarter</groupId>
+        <groupId>com.jiovan.spring.starter</groupId>
         <artifactId>geo-location-spring-boot-starter</artifactId>
         <version>LATEST</version>
     </dependency>
 ```
 
-> By default, this starter will auto take effect, you can turn it off by `spring.geo-location.enabled = false`
+> By default, this starter will auto take effect, you can turn it off by `jiovan.geo-location.enabled = false`
 
-- Configure Spring Boot `application.yml` with prefix `spring.geo-location`
+- Configure Spring Boot `application.yml` with prefix `jiovan.geo-location`
 
 ```yml
-spring:
+jiovan:
     geo-location:
         local-file:
             country-db: 'classpath:/ipaddr/GeoLite2-Country_20220701/GeoLite2-Country.mmdb'
@@ -42,7 +42,7 @@ spring:
 
 ## Document
 
-- Github: https://github.com/unikueltd/geo-location-spring-boot-starter
+- Github: https://github.com/jiovan-labs/geo-location-spring-boot-starter
 - Geoip2 github: https://github.com/maxmind/GeoIP2-java
 - Geoip2 homepage: https://www.maxmind.com/en/geoip2-databases
 - Maxmind database: https://www.maxmind.com/en/geoip2-services-and-databases
@@ -60,12 +60,12 @@ See the `NOTICE.txt` file for required notices and attributions.
 
 ## Donation
 
-You like this package? Then [donate to us](https://unikue.cn/donation) to support the development.
+You like this package? Then [donate to us](https://jiovan.com/donation) to support the development.
 
 ## Copyright
 
-Beijing Unikue Network Technology Ltd.
+Beijing Jiovan Technology Ltd.
 
 ## Website
 
-- Unikue: https://unikue.cn
+- Jiovan: https://jiovan.com

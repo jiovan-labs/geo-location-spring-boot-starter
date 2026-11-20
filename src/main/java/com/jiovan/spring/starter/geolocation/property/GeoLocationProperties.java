@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2020 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package cn.unikue.springstarter.geolocation.property;
+package com.jiovan.spring.starter.geolocation.property;
 
 
 import java.io.Serializable;
@@ -23,8 +23,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.convert.DurationUnit;
-import cn.unikue.springstarter.geolocation.config.GeoLocationAutoConfiguration;
-import cn.unikue.springstarter.geolocation.enumeration.GeoCacheType;
+import com.jiovan.spring.starter.geolocation.config.GeoLocationAutoConfiguration;
+import com.jiovan.spring.starter.geolocation.enumeration.GeoCacheType;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

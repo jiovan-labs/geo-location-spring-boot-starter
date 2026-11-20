@@ -1,9 +1,9 @@
 # Geo Location for Spring Boot Starter
-# Copyright (c) 2020 Unikue Ltd. All rights reserved.
-# https://unikue.cn
+# Copyright (c) 2020 Jiovan Ltd. All rights reserved.
+# https://jiovan.com
 
 
-spring:
+jiovan:
     geo-location:
         local-file:
             country-db: 'classpath:/ipaddr/GeoLite2-Country_20250722/GeoLite2-Country.mmdb'

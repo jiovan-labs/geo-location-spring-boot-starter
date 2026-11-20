@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2020 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package cn.unikue.springstarter.geolocation.composer.impl;
+package com.jiovan.spring.starter.geolocation.composer.impl;
 
 
 import java.io.IOException;
@@ -32,9 +32,9 @@ import com.maxmind.geoip2.model.CityResponse;
 import com.maxmind.geoip2.record.City;
 import com.maxmind.geoip2.record.Country;
 import com.maxmind.geoip2.model.CountryResponse;
-import cn.unikue.commonplexus.javaseutil.constant.CharVariantConst;
-import cn.unikue.commonplexus.javaseutil.util.InetAddressWraps;
-import cn.unikue.springstarter.geolocation.composer.GeoLocationResolver;
+import com.jiovan.plexus.common.toolkit.constant.CharVariantConst;
+import com.jiovan.plexus.common.toolkit.util.InetAddressWraps;
+import com.jiovan.spring.starter.geolocation.composer.GeoLocationResolver;
 import jakarta.annotation.Nullable;
 import lombok.AllArgsConstructor;
 
@@ -230,7 +230,7 @@ public class DefaultGeoLocationResolver implements GeoLocationResolver {
         if (response == null) {
             return null;
         }
-        Locale targetLocale = ObjectUtils.defaultIfNull(locale, Locale.ENGLISH);
+        Locale targetLocale = ObjectUtils.getIfNull(locale, Locale.ENGLISH);
         Country country = new Country(response.country(), List.of(targetLocale.toLanguageTag()));
         return country.name();
     }
@@ -240,7 +240,7 @@ public class DefaultGeoLocationResolver implements GeoLocationResolver {
         if (response == null) {
             return null;
         }
-        Locale targetLocale = ObjectUtils.defaultIfNull(locale, Locale.ENGLISH);
+        Locale targetLocale = ObjectUtils.getIfNull(locale, Locale.ENGLISH);
         City city = new City(response.city(), List.of(targetLocale.toLanguageTag()));
         return city.name();
     }
