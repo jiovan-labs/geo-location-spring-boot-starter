@@ -43,6 +43,7 @@ import lombok.AllArgsConstructor;
  * Composer implementation for {@link com.maxmind.geoip2.DatabaseReader} and {@link com.maxmind.geoip2.WebServiceClient}
  *
  * @author David Hsing
+ *
  * @see com.maxmind.geoip2.DatabaseReader
  * @see com.maxmind.geoip2.WebServiceClient
  */

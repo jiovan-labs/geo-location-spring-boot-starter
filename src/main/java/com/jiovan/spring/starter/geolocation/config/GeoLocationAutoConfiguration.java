@@ -45,6 +45,7 @@ import jakarta.annotation.Nullable;
  * Configuration for GEO location
  *
  * @author David Hsing
+ *
  * @see "https://dev.maxmind.com/geoip/geolite2-free-geolocation-data"
  * @see "https://maxmind.github.io/GeoIP2-java/"
  */

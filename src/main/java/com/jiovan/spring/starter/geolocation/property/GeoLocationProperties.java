@@ -123,6 +123,7 @@ public class GeoLocationProperties implements Serializable {
      * Properties for remote site
      *
      * @author David Hsing
+     *
      * @see com.maxmind.geoip2.WebServiceClient.Builder
      */
     @Getter

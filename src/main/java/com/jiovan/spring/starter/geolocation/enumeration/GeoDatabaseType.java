@@ -26,6 +26,7 @@ import lombok.Getter;
  * Enumerations of GEO database types
  *
  * @author David Hsing
+ *
  * @see com.maxmind.geoip2.DatabaseReader.DatabaseType
  */
 @AllArgsConstructor
